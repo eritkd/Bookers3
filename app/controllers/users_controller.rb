@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def index
+    @user = current_user
+    @users = User.all
+  end
+  
   private
 
 def user_params
