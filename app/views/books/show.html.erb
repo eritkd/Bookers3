@@ -1,7 +1,7 @@
+<p id="notice"><%= flash[:notice] %></p> 
 <div class="container px-5 px-sm-0">
   <div class="row">
-      
-      
+     
       <%= render 'list', post_images: @books %>
       
       <div class="col-md-8 offset-md-1">
@@ -20,11 +20,12 @@
 
              <td><%= @book.body %></td>
 
-             
+             <% if @book.user == current_user %>
              <td><%= link_to(edit_book_path(@book.id), class: 'btn btn-success') do %>Edit
             <% end %></td>
              <td><%= link_to(book_path(@book.id),method: :delete, "data-confirm" => "Are you sure?" ,class: 'btn btn-danger') do %>Destroy
             <% end %></td>
+            <% end %>
              </tr>
             
            </tbody>
