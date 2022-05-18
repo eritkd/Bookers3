@@ -21,7 +21,7 @@
          <tbody>
            <tr>
             <% @users.each do |user| %>
-            <th><%= image_tag @user.get_profile_image(100,100) %></th>
+            <th><%= image_tag user.get_profile_image(80,80) %></th>
              <td>
              <%= user.name %>
              </td>

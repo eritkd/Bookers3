@@ -2,7 +2,47 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
      
-      <%= render 'list', post_images: @books %>
+      <div class="col-md-3">
+          <h2>User info</h2>
+          
+          <%= image_tag @book.user.get_profile_image(100,100) %>
+          
+          <table class="table">
+              
+              <tr>
+                  <th>name</th>
+                  <th><%= @book.user.name %></th>
+              </tr>
+              <tr>
+                <th>introduction</th>
+                <th><%= @book.user.introduction %></th>
+              </tr>
+          </table>
+          
+          <!--<div class="row">-->
+          <!--  <a class="btn btn-outline-secondary btn-block edit_user_path"><i class="fa-solid fa-user-gear"></i></a>-->
+          <!--</div>-->
+          
+          <div class="row">
+            <%= link_to(edit_user_path(@user.id),class: 'btn btn-outline-secondary btn-block') do %>
+　          <i class="fas fa-user-cog"></i>
+            <% end %>
+          </div>
+          
+          
+          
+          <h2 class="mt-3">New book</h2>
+         <%= form_with model: @book do |f| %>
+          <span>Title</span><br>
+          <%= f.text_field:title %><br>
+          <br>
+          <span>Opinion</span><br>
+         <%= f.text_area:body %><br>
+         <br>
+         <%= f.submit ' Create Book ' , class: 'btn btn-success' %>
+         <% end %>
+          
+      </div>
       
       <div class="col-md-8 offset-md-1">
         <h2>Book detail</h2>
@@ -23,11 +63,11 @@
              <% if @book.user == current_user %>
              <td><%= link_to(edit_book_path(@book.id), class: 'btn btn-success') do %>Edit
             <% end %></td>
-             <td><%= link_to(book_path(@book.id),method: :delete, "data-confirm" => "Are you sure?" ,class: 'btn btn-danger') do %>Destroy
+             <td><%= link_to(book_path(@book.id),method: :delete, "data-confirm" => "本当に消しますか?" ,class: 'btn btn-danger') do %>Destroy
             <% end %></td>
             <% end %>
              </tr>
-            
+           
            </tbody>
 
         </table>
